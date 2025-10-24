@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz JavaScript</title>
+    <!-- Conectando o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Container principal que centraliza todo o conteúdo -->
+    <div class="container">
+        <!-- Cabeçalho do jogo -->
+        <header>
+            <h1>🎮 Quiz JavaScript</h1>
+            <p>Aprenda sobre Variáveis: let, var e const</p>
+        </header>
+
+        <!-- Tela inicial do jogo -->
+        <div id="tela-inicial" class="tela ativa">
+            <h2>Bem-vindo!</h2>
+            <p>Escolha o modo de jogo e teste seus conhecimentos!</p>
+            <button id="btn-iniciar" class="btn-principal">Começar</button>
+        </div>
+
+        <!-- Tela de Resumo do Tema -->
+        <!-- Exibe uma explicação dos conceitos do tema selecionado -->
+        <div id="tela-resumo" class="tela">
+            <h2 id="titulo-resumo">Resumo do Tema</h2>
+
+            <div id="conteudo-resumo" class="conteudo-resumo">
+                <!-- O conteúdo será preenchido dinamicamente pelo JavaScript -->
+            </div>
+
+            <div class="botoes-resumo">
+                <button id="btn-resumo-para-perguntas" class="btn-principal">Fazer Quiz Agora</button>
+                <button id="btn-voltar-resumo" class="btn-secundario">← Voltar</button>
+            </div>
+        </div>
+
+        <!-- Tela de seleção de modo -->
+        <div id="tela-modos" class="tela">
+            <h2>Escolha seu Nível</h2>
+            <p class="subtitulo">Selecione a dificuldade do quiz</p>
+
+            <div class="grid-modos">
+                <!-- Modo Iniciante -->
+                <div class="card-modo" data-modo="iniciante">
+                    <div class="icone-modo">🌱</div>
+                    <h3>Iniciante</h3>
+                    <p class="descricao">Fundamentos básicos de JS</p>
+                    <p class="info">10 de 50 questões</p>
+                    <!-- Dois botões: um para resumo, outro para quiz -->
+                    <div class="botoes-modo">
+                        <button class="btn-resumo" data-modo="iniciante">📖 Resumo</button>
+                        <button class="btn-quiz" data-modo="iniciante">❓ Quiz</button>
+                    </div>
+                </div>
+
+                <!-- Modo Intermediário -->
+                <div class="card-modo" data-modo="intermediario">
+                    <div class="icone-modo">🔥</div>
+                    <h3>Intermediário</h3>
+                    <p class="descricao">Loops, condicionais, escopo</p>
+                    <p class="info">10 de 50 questões</p>
+                    <!-- Dois botões: um para resumo, outro para quiz -->
+                    <div class="botoes-modo">
+                        <button class="btn-resumo" data-modo="intermediario">📖 Resumo</button>
+                        <button class="btn-quiz" data-modo="intermediario">❓ Quiz</button>
+                    </div>
+                </div>
+
+                <!-- Modo Avançado -->
+                <div class="card-modo" data-modo="avancado">
+                    <div class="icone-modo">⚡</div>
+                    <h3>Avançado</h3>
+                    <p class="descricao">Hoisting, closures, async</p>
+                    <p class="info">10 de 50 questões</p>
+                    <!-- Dois botões: um para resumo, outro para quiz -->
+                    <div class="botoes-modo">
+                        <button class="btn-resumo" data-modo="avancado">📖 Resumo</button>
+                        <button class="btn-quiz" data-modo="avancado">❓ Quiz</button>
+                    </div>
+                </div>
+
+                <!-- Modo Biblioteca -->
+                <div class="card-modo biblioteca" data-modo="biblioteca">
+                    <div class="icone-modo">📚</div>
+                    <h3>Biblioteca</h3>
+                    <p class="descricao">Estude por temas específicos</p>
+                    <p class="info">6 temas, 10 questões cada</p>
+                    <button class="btn-modo">Explorar</button>
+                </div>
+
+                <!-- Modo Desafio -->
+                <div class="card-modo destaque" data-modo="desafio">
+                    <div class="icone-modo">🏆</div>
+                    <h3>Desafio</h3>
+                    <p class="descricao">Mix de todos os níveis!</p>
+                    <p class="info">15 questões aleatórias</p>
+                    <!-- Dois botões: um para resumo, outro para quiz -->
+                    <div class="botoes-modo">
+                        <button class="btn-resumo desafio" data-modo="desafio">📖 Resumo</button>
+                        <button class="btn-quiz desafio" data-modo="desafio">❓ Quiz</button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-voltar-inicio" class="btn-secundario">← Voltar</button>
+        </div>
+
+        <!-- Tela da Biblioteca -->
+        <div id="tela-biblioteca" class="tela">
+            <h2>📚 Biblioteca de Temas</h2>
+            <p class="subtitulo">Escolha um tema para estudar e praticar</p>
+
+            <div class="grid-temas">
+                <!-- Tema: Variáveis -->
+                <div class="card-tema" data-tema="variaveis">
+                    <div class="icone-tema">📦</div>
+                    <h3>Variáveis</h3>
+                    <p class="descricao-tema">let, const, var, escopo</p>
+                    <p class="info-tema">10 de 20 questões</p>
+                    <!-- Dois botões: Resumo e Quiz -->
+                    <div class="botoes-tema">
+                        <button class="btn-resumo-tema" data-tema="variaveis">📖 Resumo</button>
+                        <button class="btn-quiz-tema" data-tema="variaveis">❓ Quiz</button>
+                    </div>
+                </div>
+
+                <!-- Tema: Funções -->
+                <div class="card-tema" data-tema="funcoes">
+                    <div class="icone-tema">⚙️</div>
+                    <h3>Funções</h3>
+                    <p class="descricao-tema">Declaração, arrow, parâmetros</p>
+                    <p class="info-tema">10 de 20 questões</p>
+                    <!-- Dois botões: Resumo e Quiz -->
+                    <div class="botoes-tema">
+                        <button class="btn-resumo-tema" data-tema="funcoes">📖 Resumo</button>
+                        <button class="btn-quiz-tema" data-tema="funcoes">❓ Quiz</button>
+                    </div>
+                </div>
+
+                <!-- Tema: Arrays -->
+                <div class="card-tema" data-tema="arrays">
+                    <div class="icone-tema">📋</div>
+                    <h3>Arrays</h3>
+                    <p class="descricao-tema">Métodos, manipulação, loops</p>
+                    <p class="info-tema">10 de 20 questões</p>
+                    <!-- Dois botões: Resumo e Quiz -->
+                    <div class="botoes-tema">
+                        <button class="btn-resumo-tema" data-tema="arrays">📖 Resumo</button>
+                        <button class="btn-quiz-tema" data-tema="arrays">❓ Quiz</button>
+                    </div>
+                </div>
+
+                <!-- Tema: Objetos -->
+                <div class="card-tema" data-tema="objetos">
+                    <div class="icone-tema">🔷</div>
+                    <h3>Objetos</h3>
+                    <p class="descricao-tema">Propriedades, métodos, this</p>
+                    <p class="info-tema">10 de 20 questões</p>
+                    <!-- Dois botões: Resumo e Quiz -->
+                    <div class="botoes-tema">
+                        <button class="btn-resumo-tema" data-tema="objetos">📖 Resumo</button>
+                        <button class="btn-quiz-tema" data-tema="objetos">❓ Quiz</button>
+                    </div>
+                </div>
+
+                <!-- Tema: Operadores -->
+                <div class="card-tema" data-tema="operadores">
+                    <div class="icone-tema">➕</div>
+                    <h3>Operadores</h3>
+                    <p class="descricao-tema">Aritméticos, lógicos, comparação</p>
+                    <p class="info-tema">10 de 20 questões</p>
+                    <!-- Dois botões: Resumo e Quiz -->
+                    <div class="botoes-tema">
+                        <button class="btn-resumo-tema" data-tema="operadores">📖 Resumo</button>
+                        <button class="btn-quiz-tema" data-tema="operadores">❓ Quiz</button>
+                    </div>
+                </div>
+
+                <!-- Tema: Condicionais -->
+                <div class="card-tema" data-tema="condicionais">
+                    <div class="icone-tema">🔀</div>
+                    <h3>Condicionais</h3>
+                    <p class="descricao-tema">if/else, switch, ternário</p>
+                    <p class="info-tema">10 de 20 questões</p>
+                    <!-- Dois botões: Resumo e Quiz -->
+                    <div class="botoes-tema">
+                        <button class="btn-resumo-tema" data-tema="condicionais">📖 Resumo</button>
+                        <button class="btn-quiz-tema" data-tema="condicionais">❓ Quiz</button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-voltar-modos" class="btn-secundario">← Voltar aos Modos</button>
+        </div>
+
+        <!-- Tela do quiz com as perguntas -->
+        <div id="tela-quiz" class="tela">
+            <!-- Botão para sair do quiz -->
+            <button id="btn-sair-quiz" class="btn-sair-quiz" title="Sair do quiz">✕</button>
+
+            <!-- Barra de progresso -->
+            <div class="progresso">
+                <div id="barra-progresso" class="barra-progresso"></div>
+            </div>
+
+            <!-- Informações sobre a questão atual -->
+            <div class="info-questao">
+                <div class="info-esquerda">
+                    <span id="modo-atual" class="badge-modo"></span>
+                    <span id="numero-questao">Questão 1 de 10</span>
+                </div>
+                <span id="pontuacao">Pontos: 0</span>
+            </div>
+
+            <!-- Área onde a pergunta será exibida -->
+            <div id="area-pergunta">
+                <h3 id="texto-pergunta"></h3>
+
+                <!-- Container com as opções de resposta -->
+                <div id="opcoes-resposta" class="opcoes"></div>
+            </div>
+
+            <!-- Feedback após responder -->
+            <div id="feedback" class="feedback escondido">
+                <p id="texto-feedback"></p>
+                <button id="btn-proxima" class="btn-principal">Próxima Pergunta</button>
+            </div>
+        </div>
+
+        <!-- Tela final com o resultado -->
+        <div id="tela-resultado" class="tela">
+            <h2>Quiz Finalizado! 🎉</h2>
+            <div class="resultado">
+                <p>Sua pontuação final:</p>
+                <div id="pontuacao-final" class="pontuacao-final">0</div>
+                <p id="mensagem-final"></p>
+            </div>
+            <button id="btn-reiniciar" class="btn-principal">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <!-- Conectando o arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
